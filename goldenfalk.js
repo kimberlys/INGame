@@ -12,6 +12,7 @@ function preload() {
 	game.load.image('sky', 'sky.png');
 	game.load.spritesheet('pow', 'cowthing.png', 64, 72);
 	game.load.image ('grass', 'grass.png');
+	game.load.image('invi', 'invisible.png',64,72);
 }
 
 function create() {
@@ -26,7 +27,7 @@ function create() {
 	player.body.collideWorldBounds = true;
 	player.animations.add('left', [0, 1, 2, 3], 10, true);
 	player.animations.add('right', [5, 6, 7, 8], 10, true);
-	game.camera.follow(player);
+	game.camera.follow(invi);
 
 	platforms = game.add.group();
 	platforms.enableBody = true;
@@ -35,6 +36,8 @@ function create() {
 	platform (100, 200, 200, 32);
 
 	cursors = game.input.keyboard.createCursorKeys();
+	player=game.add.image(0, 0, 'invi')
+
 
 }
 
