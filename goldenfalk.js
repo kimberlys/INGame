@@ -1,4 +1,4 @@
-var playerSpeed = 1000;
+var playerSpeed = 120;
 var jumpSpeed = 500;
 var inviahead = 300;
 var game = new Phaser.Game(1300, 500, Phaser.AUTO, '', {
@@ -7,7 +7,7 @@ var game = new Phaser.Game(1300, 500, Phaser.AUTO, '', {
 	update: update
 });
 
-var player, invi,
+var player, invi, bomberman,
 cursors,
 platforms;
 
@@ -16,6 +16,7 @@ function preload() {
 	game.load.spritesheet('pow', 'cowthing.png', 64, 72);
 	game.load.image ('grass', 'grass.png');
 	game.load.image('invi', 'invisible.png',64,72);
+	game.load.spritesheet('bomberman','dude.png',32,48);
 }
 
 function create() {
@@ -41,6 +42,11 @@ function create() {
 	cursors = game.input.keyboard.createCursorKeys();
 	invi=game.add.image(0, 0, 'invi')
 	game.camera.follow(invi);
+
+	bomberman=game.add.sprite(0, game.world.height - 100, 'bomberman')
+	game.physics.arcade.enable(bomberman);
+	bomberman.body.gravity.y = 600;
+	bomberman.body.collideWorldBounds = true;
 
 
 }
@@ -76,4 +82,11 @@ function update() {
 	//position of invi to be in front of the cow 
 
 	invi.position.x = player.position.x + inviahead;
+	//Puts bomberman on grass
+	game.physics.arcade.collide(bomberman, platforms);
+	//bomberman speed
+	bomberman.body.velocity.x = 100;
+
+	//make bomberman and cow collide
+	game.physics.arcade.collide(player, bomberman);
 }
