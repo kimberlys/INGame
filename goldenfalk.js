@@ -1,4 +1,4 @@
-var game = new Phaser.Game(600, 300, Phaser.AUTO, '', {
+var game = new Phaser.Game(1300, 500, Phaser.AUTO, '', {
 	preload: preload,
 	create: create,
 	update: update
@@ -17,7 +17,7 @@ function preload() {
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
-	game.world.setBounds (0, 0, 2000, game.world.height);
+	game.world.setBounds (0, 0, 8000, game.world.height);
 	game.add.tileSprite(0, 0, game.world.width, game.world.height, 'sky');
 
 	player = game.add.sprite(32, game.world.height - 100, 'pow');
@@ -44,7 +44,7 @@ function platform(x, y, width, height){
 	ledge.body.immovable = true;
 }
 
-var playerSpeed = 100;
+var playerSpeed = 1000;
 var jumpSpeed = 500;
 
 function update() {
