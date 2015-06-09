@@ -1,10 +1,13 @@
+var playerSpeed = 1000;
+var jumpSpeed = 500;
+var inviahead = 300;
 var game = new Phaser.Game(1300, 500, Phaser.AUTO, '', {
 	preload: preload,
 	create: create,
 	update: update
 });
 
-var player,
+var player, invi,
 cursors,
 platforms;
 
@@ -27,7 +30,7 @@ function create() {
 	player.body.collideWorldBounds = true;
 	player.animations.add('left', [0, 1, 2, 3], 10, true);
 	player.animations.add('right', [5, 6, 7, 8], 10, true);
-	game.camera.follow(invi);
+	
 
 	platforms = game.add.group();
 	platforms.enableBody = true;
@@ -36,7 +39,8 @@ function create() {
 	platform (100, 200, 200, 32);
 
 	cursors = game.input.keyboard.createCursorKeys();
-	player=game.add.image(0, 0, 'invi')
+	invi=game.add.image(0, 0, 'invi')
+	game.camera.follow(invi);
 
 
 }
@@ -47,8 +51,7 @@ function platform(x, y, width, height){
 	ledge.body.immovable = true;
 }
 
-var playerSpeed = 1000;
-var jumpSpeed = 500;
+
 
 function update() {
 	game.physics.arcade.collide(player, platforms);
@@ -68,4 +71,9 @@ function update() {
 	if (cursors.up.isDown && player.body.touching.down) {
 		player.body.velocity.y = -jumpSpeed;
 	}
+	//camera is following invi
+	//we want the camera to see ahead, therefore
+	//position of invi to be in front of the cow 
+
+	invi.position.x = player.position.x + inviahead;
 }
