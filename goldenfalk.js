@@ -16,7 +16,7 @@ var player,
 
 
 
-var game = new Phaser.Game(1300, 450, Phaser.AUTO, '', {
+var game = new Phaser.Game(1000, 450, Phaser.AUTO, '', {
 	preload: preload,
 	create: create,
 	update: update
@@ -54,21 +54,30 @@ function create() {
 	platforms.enableBody = true;
 
 	platform(0, game.world.height - 32, game.world.width, 32);
-	platform (1500, 350, 60, 20);
-	platform (2200, 330, 60, 30);
-	platform (2500, 330, 60, 30);
-	platform (3000, 330, 60, 30);
-	platform (3500, 330, 60, 30);
-	platform (3800, 330, 60, 30);
+	platform (1500, 350, 90, 20);
+	platform (1700, 320, 90, 20);
+	platform (2200, 330, 90, 30);
+
+	platform (2390, 310, 90, 30);
+	platform (2500, 270, 110, 30);
+	platform (2700, 250, 150, 30);
+	platform (3100, 330, 90, 20);
+	platform (3400, 330, 90, 30);
+	platform (3500, 320, 90, 30);
+	platform (3800, 330, 60, 20);
 	platform (4200, 330, 60, 30);
-	platform (4800, 330, 60, 30);
-	platform (5100, 330, 60, 30);
+	platform (4600, 330, 60, 30);
+	platform (4700, 290, 60, 30);
+	platform (4900, 330, 60, 20);
+	platform (5100, 330, 60, 20);
+	platform (5150, 310, 80, 20);
 	platform (5400, 330, 60, 30);
 	platform (6000, 330, 60, 30);
-	platform (6200, 330, 60, 30);
+	platform (6300, 330, 60, 30);
 	platform (6800, 330, 60, 30);
-	platform (7200, 330, 60, 30);
-	platform (7300, 330, 60, 30);
+	platform (7200, 330, 80, 30);
+	platform (7250, 320, 90, 40);
+	platform (7300, 260, 150, 30);
 	
 	
 
@@ -86,6 +95,7 @@ function create() {
 
 
 }
+
 
 function platform(x, y, width, height){
 	var ledge = new Phaser.TileSprite(game, x, y, width, height, 'grass');
@@ -132,7 +142,7 @@ function update() {
 	//Puts enemy on grass
 	 game.physics.arcade.collide(enemy, platforms);
 	//enemy speed
-	enemy.body.velocity.x = 145;
+	enemy.body.velocity.x = 149;
 
 	//make enemy and cow collide
 	game.physics.arcade.collide(player, enemy,  collisionHandler, null, this);
