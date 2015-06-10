@@ -10,6 +10,7 @@ var player,
 	wall, 
 	giphy,
 	cursors,
+	background,
 	platforms;
 
 
@@ -23,13 +24,14 @@ var game = new Phaser.Game(1300, 450, Phaser.AUTO, '', {
 
 function preload() {
     game.load.image('giphy','giphy.gif')
-	game.load.spritesheet('pow', 'cowthing.png', 64, 72);
+	game.load.spritesheet('pow', 'cowthing.png', 64, 70);
 	game.load.image ('grass', 'grass.png');
 	game.load.image('invi', 'invisible.png',64,72);
 	game.load.image('car', 'car.png');
 	game.load.spritesheet('enemy','dude.png',32,48);
 	game.load.image('gameover','game_over.jpg',480,480);
 	game.load.image('wall','brickwall.png',480,480);
+	game.load.image('background','background2.png',700,8000);
 	
 }
 
@@ -37,7 +39,7 @@ function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	game.world.setBounds (0, 0, 8000, game.world.height);
-	game.add.tileSprite(0, 0, game.world.width, game.world.height, 'wall');
+	game.add.tileSprite(0, 0, game.world.width, game.world.height, 'background');
 
 	player = game.add.sprite(32, game.world.height - 100, 'pow');
 	game.physics.arcade.enable(player);
@@ -81,7 +83,7 @@ function create() {
 	enemy=game.add.sprite(0, game.world.height - 100, 'enemy')
 	game.physics.arcade.enable(enemy);
 	enemy.body.gravity.y = 600;
-	enemy.body.collideWorldBounds = true;
+	 enemy.body.collideWorldBounds = true;
 
 	
 
@@ -131,12 +133,12 @@ function update() {
 
 	invi.position.x = player.position.x + inviahead;
 	//Puts enemy on grass
-	game.physics.arcade.collide(enemy, platforms);
+	 game.physics.arcade.collide(enemy, platforms);
 	//enemy speed
 	enemy.body.velocity.x = 145;
 
 	//make enemy and cow collide
-	game.physics.arcade.collide(player, enemy, collisionHandler, null, this);
+	game.physics.arcade.collide(player, enemy,  collisionHandler, null, this);
 
 	//  Run collision
     // game.physics.arcade.overlap(enemy, player, collisionHandler, null, this);
@@ -164,6 +166,9 @@ function update() {
 
 
 function collisionHandler (enemy, player) {
+
+
+
 
 //BURAK EXPERIMENTING
 //if (collisionHandler=true);{
