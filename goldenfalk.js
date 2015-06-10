@@ -57,8 +57,7 @@ function create() {
 	platform (1500, 350, 90, 20);
 	platform (1700, 320, 90, 20);
 	platform (2200, 330, 90, 30);
-
-	platform (2390, 310, 90, 30);
+    platform (2390, 310, 90, 30);
 	platform (2500, 270, 110, 30);
 	platform (2700, 250, 150, 30);
 	platform (3100, 330, 90, 20);
@@ -75,9 +74,9 @@ function create() {
 	platform (6000, 330, 60, 30);
 	platform (6300, 330, 60, 30);
 	platform (6800, 330, 60, 30);
-	platform (7200, 330, 80, 30);
-	platform (7250, 320, 90, 40);
-	platform (7300, 260, 150, 30);
+	platform (6900, 330, 80, 30);
+	platform (7100, 320, 30, 50);
+	platform (7300, 170, 80, 190);
 	
 	
 
@@ -90,6 +89,8 @@ function create() {
 	game.physics.arcade.enable(enemy);
 	enemy.body.gravity.y = 600;
 	 enemy.body.collideWorldBounds = true;
+
+	 // game.add.image(0, 0, 'gameover');
 
 	
 
@@ -152,6 +153,7 @@ function update() {
     
     //player.touching.left
 
+   
 
 	 //if (player,enemy=collide () < 1)
     //{
@@ -173,7 +175,7 @@ function update() {
 
 
 function collisionHandler (enemy, player) {
-
+ game.load.image('gameover', 'game_over.jpg');
 
 
 
