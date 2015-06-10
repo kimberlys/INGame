@@ -11,6 +11,7 @@ var player,
 	giphy,
 	cursors,
 	background,
+	gameover,
 	platforms;
 
 
@@ -53,10 +54,6 @@ function create() {
 	platforms.enableBody = true;
 
 	platform(0, game.world.height - 32, game.world.width, 32);
-	platform (300, 350, 60, 20);
-	platform (500, 350, 60, 20);
-	platform (900, 350, 60, 20);
-	platform (1100, 350, 60, 20);
 	platform (1500, 350, 60, 20);
 	platform (2200, 330, 60, 30);
 	platform (2500, 330, 60, 30);
