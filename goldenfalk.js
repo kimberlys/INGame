@@ -123,9 +123,9 @@ function update() {
 	if (cursors.right.isDown) {
 		player.body.velocity.x = playerSpeed;
 		player.animations.play('right');
-	} else if (cursors.left.isDown) {
-		player.body.velocity.x = -playerSpeed;
-		player.animations.play('left');
+	// } else if (cursors.left.isDown) {
+	// 	player.body.velocity.x = -playerSpeed;
+	// 	player.animations.play('left');
 	}
 	else{
 		player.animations.stop();
