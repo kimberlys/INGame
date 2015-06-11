@@ -39,7 +39,6 @@ function preload() {
 	game.load.image('gameover','game_over.jpg',480,480);
 	// game.load.image('wall','brickwall.png',480,480);
 	game.load.image('background','background3.png',452,450);
-	
 }
 
 function create() {
@@ -61,7 +60,7 @@ function create() {
 	platforms.enableBody = true;
 
 	platform(0, game.world.height - 32, game.world.width, 32);
-	platform (1500, 355, 90, 20);
+	platform (500, 355, 90, 20);
 	platform (1700, 355, 90, 20);
 	platform (2200, 355, 90, 30);
     platform (2390, 340, 90, 30);
@@ -103,18 +102,17 @@ function create() {
 
 	gameOverImage = game.add.image(0, 0, 'gameover');
 	gameOverImage.visible = false;
-	
-
-
 }
-
 
 function platform(x, y, width, height){
 	var ledge = new Phaser.TileSprite(game, x, y, width, height, 'grass');
 	platforms.add(ledge);
 	ledge.body.immovable = true;
-	
 }
+
+
+var maxEnemySpeed = playerSpeed - enemyDistance;
+var enemySpeed = 0;
 
 function update() {
 
@@ -153,13 +151,35 @@ function update() {
 	//Puts enemy on grass
 	game.physics.arcade.collide(enemy, platforms);
 	
-	//enemy speed
-	enemy.body.velocity.x = playerSpeed - enemyDistance;
+	// make enemy follow player
+
+	// enemy speed
+
+	
+	
+	// if the enemy is ahead of the player
+	if (player.position.x < enemy.position.x) 
+	{ 
+		if (enemySpeed > -maxEnemySpeed) enemySpeed -= 5; // if enemySpeed is bigger than eg -145, then decrement it by 1
+	}
+	else
+	{
+		if (enemySpeed < maxEnemySpeed) enemySpeed += 5; // if enemySpeed is smaller than eg 145, then increment it by 1
+	}	
+
+	enemy.body.velocity.x = enemySpeed;
+
+	console.log(enemySpeed);
+
+
+	// make the enemy slow down 
+
+	
+
 
 	// check if enemy and player collide
 	// if they collide, call the playerAndEnemyAreColliding function
 	game.physics.arcade.collide(player, enemy, playerAndEnemyAreColliding, null, this);
-
 }
 
 
