@@ -1,6 +1,6 @@
 var playerSpeed = 150;
 var jumpSpeed = 400;
-var inviahead = 300;
+var inviAhead = 300;
 
 
 var player, 
@@ -11,7 +11,7 @@ var player,
 	giphy,
 	cursors,
 	background,
-	gameover,
+	gameOverImage,
 	platforms;
 
 
@@ -91,10 +91,12 @@ function create() {
 	enemy=game.add.sprite(0, game.world.height - 100, 'enemy')
 	game.physics.arcade.enable(enemy);
 	enemy.body.gravity.y = 600;
-	 enemy.body.collideWorldBounds = true;
+	enemy.body.collideWorldBounds = true;
 
-	 // game.add.image(0, 0, 'gameover');
+	
 
+	gameOverImage = game.add.image(0, 0, 'gameover');
+	gameOverImage.visible = false;
 	
 
 
@@ -108,21 +110,20 @@ function platform(x, y, width, height){
 	
 }
 
-// BURAK EXPERIMENTING
-// function gameOver () {
-
-//     ball.body.velocity.setTo(0, 0);
-    
-//     introText.text = 'Game Over!';
-//     introText.visible = true;
-
-// }
-
-
-
 function update() {
+
+	// if the player is not alive
+	// then return, ie exit this function
+	if (player.alive = false) return
+
+
 	game.physics.arcade.collide(player, platforms);
-	player.body.velocity.x = 0;
+
+
+	
+	player.body.velocity.x = 0; // i'm setting ht player to stop horizontally 
+	// if (player.body.velocity.x == 0) // i'm checking if the player is not moving
+
 	if (cursors.right.isDown) {
 		player.body.velocity.x = playerSpeed;
 		player.animations.play('right');
@@ -141,63 +142,43 @@ function update() {
 	//camera is following invi
 	//we want the camera to see ahead, therefore
 	//position of invi to be in front of the cow 
+	invi.position.x = player.position.x + inviAhead;
 
-	invi.position.x = player.position.x + inviahead;
 	//Puts enemy on grass
-	 game.physics.arcade.collide(enemy, platforms);
+	game.physics.arcade.collide(enemy, platforms);
+	
 	//enemy speed
 	enemy.body.velocity.x = 149;
 
-	//make enemy and cow collide
-	game.physics.arcade.collide(player, enemy,  collisionHandler, null, this);
+	// check if enemy and player collide
+	// if they collide, call the playerAndEnemyAreColliding function
+	game.physics.arcade.collide(player, enemy, playerAndEnemyAreColliding, null, this);
 
-	//  Run collision
-    // game.physics.arcade.overlap(enemy, player, collisionHandler, null, this);
-    
-    //player.touching.left
-
-   
-
-	 //if (player,enemy=collide () < 1)
-    //{
-        //player.collide();
-       
-//function collisionHandler
-      // if player+enemy collide[display:gameover]
-        //the "click to restart" handler
-     
-    
-	
-	
-	//if(player,enemy=collide){
-		//display:gameover;
-		//else} 
 }
 
 
 
 
-function collisionHandler (enemy, player) {
- // game.load.image('gameover', 'game_over.jpg');
 
 
+function playerAndEnemyAreColliding (enemy, player) {
 
-//BURAK EXPERIMENTING
-//if (collisionHandler=true);{
-	// display=gameover
-//}
- //else
-   //  {
-   //     collisionHandler = false;{
-   //     	load=giphy
-   //     }
+	console.log('playerAndEnemyAreColliding');
 
-        
-   // // }
+	gameOver();
 
+}
 
+function gameOver() {
 
+	// display gameOverImage
+	gameOverImage.visible = true;
 
-console.log('collisionHandler')
+	// gameOverImage to follow invi
+	gameOverImage.position.x = invi.position.x
+
+	// stop the game 
+	player.kill();
+	enemy.kill();
 
 }
