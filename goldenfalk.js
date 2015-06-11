@@ -40,6 +40,8 @@ function preload() {
 	game.load.image('gameover','game_over.png',480,480);
 	// game.load.image('wall','brickwall.png',480,480);
 	game.load.image('background','background3.png',904,450);
+	game.load.image('up','up arrow key.png',428,93);
+	game.load.image('rightbutton','right arrow key.png',428,93);
 
 }
 
@@ -48,6 +50,8 @@ function create() {
 
 	game.world.setBounds (0, 0, 8000, game.world.height);
 	game.add.tileSprite(0, 0, game.world.width, game.world.height, 'background');
+	game.add.image(428,93,'up');
+	
 
 	player = game.add.sprite(playerStartX, game.world.height - 100, 'pow');
 	game.physics.arcade.enable(player);
@@ -63,6 +67,9 @@ function create() {
 
 	platform(0, game.world.height - 32, game.world.width, 32);
 	platform (500, 355, 90, 20);
+	platform (900, 355, 90, 20);
+	platform (1100, 355, 90, 20);
+	platform (1300, 355, 90, 20);
 	platform (1700, 355, 90, 20);
 	platform (2200, 355, 90, 30);
     platform (2390, 340, 90, 30);
