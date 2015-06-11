@@ -1,7 +1,12 @@
+// GAME VARIABLES
+
 var playerSpeed = 150;
+var playerStartX = 100; // this makes the player sprite positioned a little further into the canvas, so that player and enemy don't collide immediately
+var enemyDistance = 5; // enemy will be slower than the player by this number
 var jumpSpeed = 400;
 var inviAhead = 300;
 
+// GAME COMPONENTS
 
 var player, 
 	invi, 
@@ -22,6 +27,7 @@ var game = new Phaser.Game(1300, 450, Phaser.AUTO, '', {
 	update: update
 });
 
+// GAME LOGIC
 
 function preload() {
     game.load.image('giphy','giphy.gif')
@@ -42,7 +48,7 @@ function create() {
 	game.world.setBounds (0, 0, 8000, game.world.height);
 	game.add.tileSprite(0, 0, game.world.width, game.world.height, 'background');
 
-	player = game.add.sprite(32, game.world.height - 100, 'pow');
+	player = game.add.sprite(playerStartX, game.world.height - 100, 'pow');
 	game.physics.arcade.enable(player);
 	player.body.gravity.y = 600;
 	player.body.collideWorldBounds = true;
@@ -148,7 +154,7 @@ function update() {
 	game.physics.arcade.collide(enemy, platforms);
 	
 	//enemy speed
-	enemy.body.velocity.x = 149;
+	enemy.body.velocity.x = playerSpeed - enemyDistance;
 
 	// check if enemy and player collide
 	// if they collide, call the playerAndEnemyAreColliding function
