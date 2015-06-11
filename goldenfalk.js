@@ -28,11 +28,11 @@ function preload() {
 	game.load.spritesheet('pow', 'smallroshida.png', 25, 50);
 	game.load.image ('grass', 'grass.png');
 	game.load.image('invi', 'invisible.png',64,72);
-	game.load.image('car', 'car.png',256,256);
+	// game.load.image('car', 'car.png',256,256);
 	game.load.spritesheet('enemy','smallgolden.png',20,30);
 	game.load.image('gameover','game_over.jpg',480,480);
-	game.load.image('wall','brickwall.png',480,480);
-	game.load.image('background','background2.png',700,8000);
+	// game.load.image('wall','brickwall.png',480,480);
+	game.load.image('background','background3.png',452,450);
 	
 }
 
