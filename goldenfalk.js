@@ -17,7 +17,8 @@ var player,
 	cursors,
 	background,
 	gameOverImage,
-	platforms;
+	platforms,
+	home;
 
 
 
@@ -36,9 +37,10 @@ function preload() {
 	game.load.image('invi', 'invisible.png',64,72);
 	// game.load.image('car', 'car.png',256,256);
 	game.load.spritesheet('enemy','smallgolden.png',20,30);
-	game.load.image('gameover','game_over.jpg',480,480);
+	game.load.image('gameover','game_over.png',480,480);
 	// game.load.image('wall','brickwall.png',480,480);
-	game.load.image('background','background3.png',452,450);
+	game.load.image('background','background3.png',904,450);
+
 }
 
 function create() {
